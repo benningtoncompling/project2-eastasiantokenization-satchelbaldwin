@@ -45,6 +45,8 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
+CATEGORY:c1
+CATEGORY:c1
 	accumulator: คู่ แข่ง  
 		transition: q0 -> q2 (ข : c1)
 character: ั
@@ -66,6 +68,8 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
+CATEGORY:c1
+CATEGORY:c1
 	accumulator: คู่ แข่ง ขัน  
 		transition: q0 -> q2 (ต : c1)
 character: ่
@@ -93,25 +97,35 @@ category m: c3
 category m: c1
 category m: c3
 	category: c3
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: คู่ แข่ง ขัน ต่าง  
+		transition: q0 -> q2 (ก : c1)
 character: ็
 category m: v2
 	category: v2
+	accumulator: คู่ แข่ง ขัน ต่าง ก 
+		transition: q2 -> q4 (็ : v2)
 character: ค
 category m: c1
 	category: c1
-	accumulator: คู่ แข่ง ขัน ต่าง  
-		transition: q0 -> q2 (ค : c1)
+	accumulator: คู่ แข่ง ขัน ต่าง ก็ 
+		transition: q4 -> q8 (ค : c1)
+		adding space after.
 character: ุ
 category m: v2
 	category: v2
-	accumulator: คู่ แข่ง ขัน ต่าง ค 
+		epsilon transition: q8 -> q2, restepping
+category m: v2
+	category: v2
+	accumulator: คู่ แข่ง ขัน ต่าง ก็ ค 
 		transition: q2 -> q4 (ุ : v2)
 character: ม
 category m: c1
 category m: c2
 category m: c3
 	category: c3
-	accumulator: คู่ แข่ง ขัน ต่าง คุ 
+	accumulator: คู่ แข่ง ขัน ต่าง ก็ คุ 
 		transition: q4 -> q9 (ม : c3)
 character: เ
 category m: v1
@@ -120,23 +134,24 @@ category m: v1
 			q9: re-stepping with space
 category m: v1
 	category: v1
-	accumulator: คู่ แข่ง ขัน ต่าง คุม  
+CATEGORY:v1
+	accumulator: คู่ แข่ง ขัน ต่าง ก็ คุม  
 		transition: q0 -> q1 (เ : v1)
 character: ช
 category m: c1
 	category: c1
-	accumulator: คู่ แข่ง ขัน ต่าง คุม เ 
+	accumulator: คู่ แข่ง ขัน ต่าง ก็ คุม เ 
 		transition: q1 -> q2 (ช : c1)
 character: ิ
 category m: v2
 	category: v2
-	accumulator: คู่ แข่ง ขัน ต่าง คุม เช 
+	accumulator: คู่ แข่ง ขัน ต่าง ก็ คุม เช 
 		transition: q2 -> q4 (ิ : v2)
 character: ง
 category m: c1
 category m: c3
 	category: c3
-	accumulator: คู่ แข่ง ขัน ต่าง คุม เชิ 
+	accumulator: คู่ แข่ง ขัน ต่าง ก็ คุม เชิ 
 		transition: q4 -> q9 (ง : c3)
 character: ก
 category m: c1
@@ -147,16 +162,27 @@ category m: c3
 category m: c1
 category m: c3
 	category: c3
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: คู่ แข่ง ขัน ต่าง ก็ คุม เชิง  
+		transition: q0 -> q2 (ก : c1)
 character: ั
 category m: v2
 	category: v2
+	accumulator: คู่ แข่ง ขัน ต่าง ก็ คุม เชิง ก 
+		transition: q2 -> q4 (ั : v2)
 character: น
 category m: c1
 category m: c2
 category m: c3
 	category: c3
+	accumulator: คู่ แข่ง ขัน ต่าง ก็ คุม เชิง กั 
+		transition: q4 -> q9 (น : c3)
 character: 
 
+	category: 
+		epsilon transition: q9 -> q0, restepping
+			q9: re-stepping with space
 	category: 
 character: เ
 category m: v1
@@ -265,12 +291,21 @@ character: ง
 category m: c1
 category m: c3
 	category: c3
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: เขา เป ครู่ หน  
+		transition: q0 -> q2 (ง : c1)
 character: แ
 category m: v1
 	category: v1
-	accumulator: เขา เป ครู่ หน  
-		transition: q0 -> q1 (แ : v1)
+	accumulator: เขา เป ครู่ หน ง 
+		transition: q2 -> q7 (แ : v1)
+		adding space after.
 character: ล
+category m: c1
+category m: c2
+	category: c2
+		epsilon transition: q7 -> q1, restepping
 category m: c1
 category m: c2
 	category: c2
@@ -286,18 +321,18 @@ category m: c3
 character: พ
 category m: c1
 	category: c1
-	accumulator: เขา เป ครู่ หน แ 
+	accumulator: เขา เป ครู่ หน ง แ 
 		transition: q1 -> q2 (พ : c1)
 character: ู
 category m: v2
 	category: v2
-	accumulator: เขา เป ครู่ หน แพ 
+	accumulator: เขา เป ครู่ หน ง แพ 
 		transition: q2 -> q4 (ู : v2)
 character: ด
 category m: c1
 category m: c3
 	category: c3
-	accumulator: เขา เป ครู่ หน แพู 
+	accumulator: เขา เป ครู่ หน ง แพู 
 		transition: q4 -> q9 (ด : c3)
 character: ข
 category m: c1
@@ -306,24 +341,26 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
-	accumulator: เขา เป ครู่ หน แพูด  
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: เขา เป ครู่ หน ง แพูด  
 		transition: q0 -> q2 (ข : c1)
 character: ึ
 category m: v2
 	category: v2
-	accumulator: เขา เป ครู่ หน แพูด ข 
+	accumulator: เขา เป ครู่ หน ง แพูด ข 
 		transition: q2 -> q4 (ึ : v2)
 character: ้
 category m: t
 	category: t
-	accumulator: เขา เป ครู่ หน แพูด ขึ 
+	accumulator: เขา เป ครู่ หน ง แพูด ขึ 
 		transition: q4 -> q5 (้ : t)
 character: น
 category m: c1
 category m: c2
 category m: c3
 	category: c3
-	accumulator: เขา เป ครู่ หน แพูด ขึ้ 
+	accumulator: เขา เป ครู่ หน ง แพูด ขึ้ 
 		transition: q5 -> q9 (น : c3)
 character: 
 
@@ -379,30 +416,40 @@ category m: c1
 category m: c2
 category m: c3
 	category: c3
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: เธอ หัน  
+		transition: q0 -> q2 (ม : c1)
 character: า
 category m: v3
 	category: v3
+	accumulator: เธอ หัน ม 
+		transition: q2 -> q6 (า : v3)
 character: ค
 category m: c1
 	category: c1
-	accumulator: เธอ หัน  
-		transition: q0 -> q2 (ค : c1)
+	accumulator: เธอ หัน มา 
+		transition: q6 -> q8 (ค : c1)
+		adding space after.
 character: ุ
 category m: v2
 	category: v2
-	accumulator: เธอ หัน ค 
+		epsilon transition: q8 -> q2, restepping
+category m: v2
+	category: v2
+	accumulator: เธอ หัน มา ค 
 		transition: q2 -> q4 (ุ : v2)
 character: ้
 category m: t
 	category: t
-	accumulator: เธอ หัน คุ 
+	accumulator: เธอ หัน มา คุ 
 		transition: q4 -> q5 (้ : t)
 character: ย
 category m: c1
 category m: v3
 category m: c3
 	category: c3
-	accumulator: เธอ หัน คุ้ 
+	accumulator: เธอ หัน มา คุ้ 
 		transition: q5 -> q9 (ย : c3)
 character: ท
 category m: c1
@@ -411,25 +458,27 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
-	accumulator: เธอ หัน คุ้ย  
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: เธอ หัน มา คุ้ย  
 		transition: q0 -> q2 (ท : c1)
 character: ร
 category m: c1
 category m: c2
 	category: c2
-	accumulator: เธอ หัน คุ้ย ท 
+	accumulator: เธอ หัน มา คุ้ย ท 
 		transition: q2 -> q3 (ร : c2)
 character: า
 category m: v3
 	category: v3
-	accumulator: เธอ หัน คุ้ย ทร 
+	accumulator: เธอ หัน มา คุ้ย ทร 
 		transition: q3 -> q6 (า : v3)
 character: ย
 category m: c1
 category m: v3
 category m: c3
 	category: c3
-	accumulator: เธอ หัน คุ้ย ทรา 
+	accumulator: เธอ หัน มา คุ้ย ทรา 
 		transition: q6 -> q9 (ย : c3)
 character: ข
 category m: c1
@@ -438,24 +487,26 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
-	accumulator: เธอ หัน คุ้ย ทราย  
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: เธอ หัน มา คุ้ย ทราย  
 		transition: q0 -> q2 (ข : c1)
 character: ึ
 category m: v2
 	category: v2
-	accumulator: เธอ หัน คุ้ย ทราย ข 
+	accumulator: เธอ หัน มา คุ้ย ทราย ข 
 		transition: q2 -> q4 (ึ : v2)
 character: ้
 category m: t
 	category: t
-	accumulator: เธอ หัน คุ้ย ทราย ขึ 
+	accumulator: เธอ หัน มา คุ้ย ทราย ขึ 
 		transition: q4 -> q5 (้ : t)
 character: น
 category m: c1
 category m: c2
 category m: c3
 	category: c3
-	accumulator: เธอ หัน คุ้ย ทราย ขึ้ 
+	accumulator: เธอ หัน มา คุ้ย ทราย ขึ้ 
 		transition: q5 -> q9 (น : c3)
 character: ม
 category m: c1
@@ -468,25 +519,35 @@ category m: c1
 category m: c2
 category m: c3
 	category: c3
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: เธอ หัน มา คุ้ย ทราย ขึ้น  
+		transition: q0 -> q2 (ม : c1)
 character: า
 category m: v3
 	category: v3
+	accumulator: เธอ หัน มา คุ้ย ทราย ขึ้น ม 
+		transition: q2 -> q6 (า : v3)
 character: ใ
 category m: v1
 	category: v1
-	accumulator: เธอ หัน คุ้ย ทราย ขึ้น  
-		transition: q0 -> q1 (ใ : v1)
+	accumulator: เธอ หัน มา คุ้ย ทราย ขึ้น มา 
+		transition: q6 -> q7 (ใ : v1)
+		adding space after.
 character: ห
 category m: c1
 	category: c1
-	accumulator: เธอ หัน คุ้ย ทราย ขึ้น ใ 
+		epsilon transition: q7 -> q1, restepping
+category m: c1
+	category: c1
+	accumulator: เธอ หัน มา คุ้ย ทราย ขึ้น มา ใ 
 		transition: q1 -> q2 (ห : c1)
 character: ม
 category m: c1
 category m: c2
 category m: c3
 	category: c3
-	accumulator: เธอ หัน คุ้ย ทราย ขึ้น ให 
+	accumulator: เธอ หัน มา คุ้ย ทราย ขึ้น มา ให 
 		transition: q2 -> q9 (ม : c3)
 character: ่
 category m: t
@@ -583,6 +644,8 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
+CATEGORY:c1
+CATEGORY:c1
 	accumulator: ที่ ไจัก  
 		transition: q0 -> q2 (ค : c1)
 character: ุ
@@ -625,6 +688,7 @@ category m: v1
 			q9: re-stepping with space
 category m: v1
 	category: v1
+CATEGORY:v1
 	accumulator: ฉัน  
 		transition: q0 -> q1 (เ : v1)
 character: ห
@@ -651,6 +715,7 @@ category m: v1
 			q9: re-stepping with space
 category m: v1
 	category: v1
+CATEGORY:v1
 	accumulator: ฉัน เห็น  
 		transition: q0 -> q1 (เ : v1)
 character: ข
@@ -691,6 +756,7 @@ category m: v1
 			q9: re-stepping with space
 category m: v1
 	category: v1
+CATEGORY:v1
 	accumulator: ฉัน เห็น เขา ตาม  
 		transition: q0 -> q1 (เ : v1)
 character: ธ
@@ -759,6 +825,8 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
+CATEGORY:c1
+CATEGORY:c1
 	accumulator: ฉัน เห็น เขา ตาม เธอ แจ ไป ทุก  
 		transition: q0 -> q2 (ท : c1)
 character: ี
@@ -799,6 +867,7 @@ category m: v1
 			q9: re-stepping with space
 category m: v1
 	category: v1
+CATEGORY:v1
 	accumulator: ฉัน เห็น เขา ตาม เธอ แจ ไป ทุก ที เป็น  
 		transition: q0 -> q1 (เ : v1)
 character: ง
@@ -832,6 +901,8 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
+CATEGORY:c1
+CATEGORY:c1
 	accumulator: ฉัน เห็น เขา ตาม เธอ แจ ไป ทุก ที เป็น เตาม  
 		transition: q0 -> q2 (ต : c1)
 character: ั
@@ -854,6 +925,8 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
+CATEGORY:c1
+CATEGORY:c1
 	accumulator: ฉัน เห็น เขา ตาม เธอ แจ ไป ทุก ที เป็น เตาม ตัว  
 		transition: q0 -> q2 (ต : c1)
 character: ล
@@ -881,6 +954,7 @@ category m: v1
 			q9: re-stepping with space
 category m: v1
 	category: v1
+CATEGORY:v1
 	accumulator: ฉัน เห็น เขา ตาม เธอ แจ ไป ทุก ที เป็น เตาม ตัว ตลอด  
 		transition: q0 -> q1 (เ : v1)
 character: ล
@@ -954,24 +1028,36 @@ character: อ
 category m: c1
 category m: v3
 	category: v3
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: เหน  
+		transition: q0 -> q2 (อ : c1)
 character: ก
 category m: c1
 category m: c3
 	category: c3
+	accumulator: เหน อ 
+		transition: q2 -> q9 (ก : c3)
 character: ส
 category m: c1
 	category: c1
-	accumulator: เหน  
+		epsilon transition: q9 -> q0, restepping
+			q9: re-stepping with space
+category m: c1
+	category: c1
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: เหน อก  
 		transition: q0 -> q2 (ส : c1)
 character: ี
 category m: v2
 	category: v2
-	accumulator: เหน ส 
+	accumulator: เหน อก ส 
 		transition: q2 -> q4 (ี : v2)
 character: แ
 category m: v1
 	category: v1
-	accumulator: เหน สี 
+	accumulator: เหน อก สี 
 		transition: q4 -> q7 (แ : v1)
 		adding space after.
 character: ด
@@ -1038,6 +1124,7 @@ category m: v1
 			q9: re-stepping with space
 category m: v1
 	category: v1
+CATEGORY:v1
 	accumulator: เจ้า ของ  
 		transition: q0 -> q1 (โ : v1)
 character: ร
@@ -1134,6 +1221,8 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
+CATEGORY:c1
+CATEGORY:c1
 	accumulator: เจ้า ของ โหา ที่ ตั้ง  
 		transition: q0 -> q2 (ข : c1)
 character: อ
@@ -1155,6 +1244,7 @@ category m: v1
 			q9: re-stepping with space
 category m: v1
 	category: v1
+CATEGORY:v1
 	accumulator: เจ้า ของ โหา ที่ ตั้ง ของ  
 		transition: q0 -> q1 (โ : v1)
 character: ร
@@ -1241,6 +1331,7 @@ category m: v1
 			q9: re-stepping with space
 category m: v1
 	category: v1
+CATEGORY:v1
 	accumulator: ขา ของ  
 		transition: q0 -> q1 (เ : v1)
 character: ข
@@ -1286,6 +1377,7 @@ category m: v1
 			q9: re-stepping with space
 category m: v1
 	category: v1
+CATEGORY:v1
 	accumulator: ขา ของ เขา สั่น  
 		transition: q0 -> q1 (เ : v1)
 character: ท
@@ -1355,33 +1447,55 @@ category m: c2
 category m: c1
 category m: c2
 	category: c2
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: ขา ของ เขา สั่น เทา เต้อง  
+		transition: q0 -> q2 (ล : c1)
 character: ง
 category m: c1
 category m: c3
 	category: c3
+	accumulator: ขา ของ เขา สั่น เทา เต้อง ล 
+		transition: q2 -> q9 (ง : c3)
 character: ม
 category m: c1
 category m: c2
 category m: c3
 	category: c3
+		epsilon transition: q9 -> q0, restepping
+			q9: re-stepping with space
+category m: c1
+category m: c2
+category m: c3
+	category: c3
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: ขา ของ เขา สั่น เทา เต้อง ลง  
+		transition: q0 -> q2 (ม : c1)
 character: า
 category m: v3
 	category: v3
+	accumulator: ขา ของ เขา สั่น เทา เต้อง ลง ม 
+		transition: q2 -> q6 (า : v3)
 character: จ
 category m: c1
 	category: c1
-	accumulator: ขา ของ เขา สั่น เทา เต้อง  
-		transition: q0 -> q2 (จ : c1)
+	accumulator: ขา ของ เขา สั่น เทา เต้อง ลง มา 
+		transition: q6 -> q8 (จ : c1)
+		adding space after.
 character: า
 category m: v3
 	category: v3
-	accumulator: ขา ของ เขา สั่น เทา เต้อง จ 
+		epsilon transition: q8 -> q2, restepping
+category m: v3
+	category: v3
+	accumulator: ขา ของ เขา สั่น เทา เต้อง ลง มา จ 
 		transition: q2 -> q6 (า : v3)
 character: ก
 category m: c1
 category m: c3
 	category: c3
-	accumulator: ขา ของ เขา สั่น เทา เต้อง จา 
+	accumulator: ขา ของ เขา สั่น เทา เต้อง ลง มา จา 
 		transition: q6 -> q9 (ก : c3)
 character: ท
 category m: c1
@@ -1390,22 +1504,24 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
-	accumulator: ขา ของ เขา สั่น เทา เต้อง จาก  
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: ขา ของ เขา สั่น เทา เต้อง ลง มา จาก  
 		transition: q0 -> q2 (ท : c1)
 character: ี
 category m: v2
 	category: v2
-	accumulator: ขา ของ เขา สั่น เทา เต้อง จาก ท 
+	accumulator: ขา ของ เขา สั่น เทา เต้อง ลง มา จาก ท 
 		transition: q2 -> q4 (ี : v2)
 character: ่
 category m: t
 	category: t
-	accumulator: ขา ของ เขา สั่น เทา เต้อง จาก ที 
+	accumulator: ขา ของ เขา สั่น เทา เต้อง ลง มา จาก ที 
 		transition: q4 -> q5 (่ : t)
 character: ส
 category m: c1
 	category: c1
-	accumulator: ขา ของ เขา สั่น เทา เต้อง จาก ที่ 
+	accumulator: ขา ของ เขา สั่น เทา เต้อง ลง มา จาก ที่ 
 		transition: q5 -> q8 (ส : c1)
 		adding space after.
 character: ู
@@ -1414,13 +1530,13 @@ category m: v2
 		epsilon transition: q8 -> q2, restepping
 category m: v2
 	category: v2
-	accumulator: ขา ของ เขา สั่น เทา เต้อง จาก ที่ ส 
+	accumulator: ขา ของ เขา สั่น เทา เต้อง ลง มา จาก ที่ ส 
 		transition: q2 -> q4 (ู : v2)
 character: ง
 category m: c1
 category m: c3
 	category: c3
-	accumulator: ขา ของ เขา สั่น เทา เต้อง จาก ที่ สู 
+	accumulator: ขา ของ เขา สั่น เทา เต้อง ลง มา จาก ที่ สู 
 		transition: q4 -> q9 (ง : c3)
 character: 
 
@@ -1451,6 +1567,8 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
+CATEGORY:c1
+CATEGORY:c1
 	accumulator: จุด  
 		transition: q0 -> q2 (ส : c1)
 character: ุ
@@ -1475,30 +1593,44 @@ category m: c1
 category m: v3
 category m: c3
 	category: c3
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: จุด สุด  
+		transition: q0 -> q2 (ย : c1)
 character: อ
 category m: c1
 category m: v3
 	category: v3
+	accumulator: จุด สุด ย 
+		transition: q2 -> q6 (อ : v3)
 character: ด
 category m: c1
 category m: c3
 	category: c3
+	accumulator: จุด สุด ยอ 
+		transition: q6 -> q9 (ด : c3)
 character: ข
 category m: c1
 	category: c1
-	accumulator: จุด สุด  
+		epsilon transition: q9 -> q0, restepping
+			q9: re-stepping with space
+category m: c1
+	category: c1
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: จุด สุด ยอด  
 		transition: q0 -> q2 (ข : c1)
 character: อ
 category m: c1
 category m: v3
 	category: v3
-	accumulator: จุด สุด ข 
+	accumulator: จุด สุด ยอด ข 
 		transition: q2 -> q6 (อ : v3)
 character: ง
 category m: c1
 category m: c3
 	category: c3
-	accumulator: จุด สุด ขอ 
+	accumulator: จุด สุด ยอด ขอ 
 		transition: q6 -> q9 (ง : c3)
 character: ค
 category m: c1
@@ -1507,7 +1639,9 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
-	accumulator: จุด สุด ของ  
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: จุด สุด ยอด ของ  
 		transition: q0 -> q2 (ค : c1)
 character: ว
 category m: c1
@@ -1515,7 +1649,7 @@ category m: c2
 category m: v3
 category m: c3
 	category: c3
-	accumulator: จุด สุด ของ ค 
+	accumulator: จุด สุด ยอด ของ ค 
 		transition: q2 -> q9 (ว : c3)
 character: า
 category m: v3
@@ -1529,31 +1663,45 @@ category m: c1
 category m: c2
 category m: c3
 	category: c3
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: จุด สุด ยอด ของ คว  
+		transition: q0 -> q2 (ม : c1)
 character: ร
 category m: c1
 category m: c2
 	category: c2
+	accumulator: จุด สุด ยอด ของ คว ม 
+		transition: q2 -> q3 (ร : c2)
 character: ู
 category m: v2
 	category: v2
+	accumulator: จุด สุด ยอด ของ คว มร 
+		transition: q3 -> q4 (ู : v2)
 character: ้
 category m: t
 	category: t
+	accumulator: จุด สุด ยอด ของ คว มรู 
+		transition: q4 -> q5 (้ : t)
 character: ส
 category m: c1
 	category: c1
-	accumulator: จุด สุด ของ คว  
-		transition: q0 -> q2 (ส : c1)
+	accumulator: จุด สุด ยอด ของ คว มรู้ 
+		transition: q5 -> q8 (ส : c1)
+		adding space after.
 character: ึ
 category m: v2
 	category: v2
-	accumulator: จุด สุด ของ คว ส 
+		epsilon transition: q8 -> q2, restepping
+category m: v2
+	category: v2
+	accumulator: จุด สุด ยอด ของ คว มรู้ ส 
 		transition: q2 -> q4 (ึ : v2)
 character: ก
 category m: c1
 category m: c3
 	category: c3
-	accumulator: จุด สุด ของ คว สึ 
+	accumulator: จุด สุด ยอด ของ คว มรู้ สึ 
 		transition: q4 -> q9 (ก : c3)
 character: ท
 category m: c1
@@ -1562,18 +1710,20 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
-	accumulator: จุด สุด ของ คว สึก  
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: จุด สุด ยอด ของ คว มรู้ สึก  
 		transition: q0 -> q2 (ท : c1)
 character: า
 category m: v3
 	category: v3
-	accumulator: จุด สุด ของ คว สึก ท 
+	accumulator: จุด สุด ยอด ของ คว มรู้ สึก ท 
 		transition: q2 -> q6 (า : v3)
 character: ง
 category m: c1
 category m: c3
 	category: c3
-	accumulator: จุด สุด ของ คว สึก ทา 
+	accumulator: จุด สุด ยอด ของ คว มรู้ สึก ทา 
 		transition: q6 -> q9 (ง : c3)
 character: เ
 category m: v1
@@ -1582,17 +1732,18 @@ category m: v1
 			q9: re-stepping with space
 category m: v1
 	category: v1
-	accumulator: จุด สุด ของ คว สึก ทาง  
+CATEGORY:v1
+	accumulator: จุด สุด ยอด ของ คว มรู้ สึก ทาง  
 		transition: q0 -> q1 (เ : v1)
 character: พ
 category m: c1
 	category: c1
-	accumulator: จุด สุด ของ คว สึก ทาง เ 
+	accumulator: จุด สุด ยอด ของ คว มรู้ สึก ทาง เ 
 		transition: q1 -> q2 (พ : c1)
 character: ศ
 category m: c1
 	category: c1
-	accumulator: จุด สุด ของ คว สึก ทาง เพ 
+	accumulator: จุด สุด ยอด ของ คว มรู้ สึก ทาง เพ 
 		transition: q2 -> q8 (ศ : c1)
 		adding space after.
 character: 
@@ -1626,17 +1777,27 @@ character: ง
 category m: c1
 category m: c3
 	category: c3
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: หน  
+		transition: q0 -> q2 (ง : c1)
 character: ห
 category m: c1
 	category: c1
-	accumulator: หน  
-		transition: q0 -> q2 (ห : c1)
+	accumulator: หน ง 
+		transition: q2 -> q8 (ห : c1)
+		adding space after.
 character: ม
 category m: c1
 category m: c2
 category m: c3
 	category: c3
-	accumulator: หน ห 
+		epsilon transition: q8 -> q2, restepping
+category m: c1
+category m: c2
+category m: c3
+	category: c3
+	accumulator: หน ง ห 
 		transition: q2 -> q9 (ม : c3)
 character: ื
 category m: v2
@@ -1653,22 +1814,31 @@ category m: c1
 category m: c2
 category m: c3
 	category: c3
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: หน ง หม  
+		transition: q0 -> q2 (น : c1)
 character: ส
 category m: c1
 	category: c1
-	accumulator: หน หม  
-		transition: q0 -> q2 (ส : c1)
+	accumulator: หน ง หม น 
+		transition: q2 -> q8 (ส : c1)
+		adding space after.
 character: อ
 category m: c1
 category m: v3
 	category: v3
-	accumulator: หน หม ส 
+		epsilon transition: q8 -> q2, restepping
+category m: c1
+category m: v3
+	category: v3
+	accumulator: หน ง หม น ส 
 		transition: q2 -> q6 (อ : v3)
 character: ง
 category m: c1
 category m: c3
 	category: c3
-	accumulator: หน หม สอ 
+	accumulator: หน ง หม น สอ 
 		transition: q6 -> q9 (ง : c3)
 character: พ
 category m: c1
@@ -1677,19 +1847,21 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
-	accumulator: หน หม สอง  
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: หน ง หม น สอง  
 		transition: q0 -> q2 (พ : c1)
 character: ั
 category m: v2
 	category: v2
-	accumulator: หน หม สอง พ 
+	accumulator: หน ง หม น สอง พ 
 		transition: q2 -> q4 (ั : v2)
 character: น
 category m: c1
 category m: c2
 category m: c3
 	category: c3
-	accumulator: หน หม สอง พั 
+	accumulator: หน ง หม น สอง พั 
 		transition: q4 -> q9 (น : c3)
 character: ห
 category m: c1
@@ -1698,17 +1870,19 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
-	accumulator: หน หม สอง พัน  
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: หน ง หม น สอง พัน  
 		transition: q0 -> q2 (ห : c1)
 character: ้
 category m: t
 	category: t
-	accumulator: หน หม สอง พัน ห 
+	accumulator: หน ง หม น สอง พัน ห 
 		transition: q2 -> q5 (้ : t)
 character: า
 category m: v3
 	category: v3
-	accumulator: หน หม สอง พัน ห้ 
+	accumulator: หน ง หม น สอง พัน ห้ 
 		transition: q5 -> q6 (า : v3)
 character: ร
 category m: c1
@@ -1726,7 +1900,7 @@ category m: c1
 category m: v3
 category m: c3
 	category: c3
-	accumulator: หน หม สอง พัน ห้า 
+	accumulator: หน ง หม น สอง พัน ห้า 
 		transition: q6 -> q9 (ย : c3)
 character: ห
 category m: c1
@@ -1735,13 +1909,15 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
-	accumulator: หน หม สอง พัน ห้าย  
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: หน ง หม น สอง พัน ห้าย  
 		transition: q0 -> q2 (ห : c1)
 character: ก
 category m: c1
 category m: c3
 	category: c3
-	accumulator: หน หม สอง พัน ห้าย ห 
+	accumulator: หน ง หม น สอง พัน ห้าย ห 
 		transition: q2 -> q9 (ก : c3)
 character: ส
 category m: c1
@@ -1750,18 +1926,20 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
-	accumulator: หน หม สอง พัน ห้าย หก  
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: หน ง หม น สอง พัน ห้าย หก  
 		transition: q0 -> q2 (ส : c1)
 character: ิ
 category m: v2
 	category: v2
-	accumulator: หน หม สอง พัน ห้าย หก ส 
+	accumulator: หน ง หม น สอง พัน ห้าย หก ส 
 		transition: q2 -> q4 (ิ : v2)
 character: บ
 category m: c1
 category m: c3
 	category: c3
-	accumulator: หน หม สอง พัน ห้าย หก สิ 
+	accumulator: หน ง หม น สอง พัน ห้าย หก สิ 
 		transition: q4 -> q9 (บ : c3)
 character: ส
 category m: c1
@@ -1770,17 +1948,19 @@ category m: c1
 			q9: re-stepping with space
 category m: c1
 	category: c1
-	accumulator: หน หม สอง พัน ห้าย หก สิบ  
+CATEGORY:c1
+CATEGORY:c1
+	accumulator: หน ง หม น สอง พัน ห้าย หก สิบ  
 		transition: q0 -> q2 (ส : c1)
 character: า
 category m: v3
 	category: v3
-	accumulator: หน หม สอง พัน ห้าย หก สิบ ส 
+	accumulator: หน ง หม น สอง พัน ห้าย หก สิบ ส 
 		transition: q2 -> q6 (า : v3)
 character: ม
 category m: c1
 category m: c2
 category m: c3
 	category: c3
-	accumulator: หน หม สอง พัน ห้าย หก สิบ สา 
+	accumulator: หน ง หม น สอง พัน ห้าย หก สิบ สา 
 		transition: q6 -> q9 (ม : c3)

@@ -47,6 +47,12 @@ class StateMachine:
         if len(valid_starting) == 0:
             self.step(char, True)
         for t in valid_starting:
+            if len(self.accumulator) != 0:
+                if self.accumulator[-1] == ' ':
+                    for possible_category in category_fallbacks:
+                        if possible_category[-1] == '1':
+                            print("CATEGORY:" + possible_category)
+                            char_category = possible_category
             if t.condition == "*":
                 print("\t\tepsilon transition: {} -> {}, restepping".format(t.name, t.to))
                 self.current_state = t.to 
