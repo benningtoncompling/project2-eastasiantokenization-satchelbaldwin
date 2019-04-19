@@ -24,53 +24,85 @@ class StateMachine:
         self.current_state = cs
         self.accumulator = a
         self.transitions = t
+        self.level = 1
     def run(self, text):
         for char in text:
-            print("character: " + char)
-            self.step(char)
+            if char != '\n':
+                print("character: {} {}".format(char, ord(char)))
+                self.step(char)
         return self.accumulator
-    def step(self, char, retry = False):
+    def get_clevel(self, category):
+        if category == "t":
+            return 1
+        if category[-1] in ["1", "2", "3"]:
+            return int(category[-1])
+        else:
+            return -1
+    def step(self, char, force = 0):
         char_category = ""
-        category_fallbacks = []
+        possible_categories = []
+        # find possible categories
         for k, v in self.categories.items():
             if char in v:
-                print('category m: {}'.format(k))
+                print('possible category: {}'.format(k))
                 char_category = k
-                category_fallbacks.append(k)
-        if retry:
-            char_category = category_fallbacks[0]
+                possible_categories.append(k)
+        # decide based on other seen in word
+        for possible_category in possible_categories:
+            if self.get_clevel(possible_category) >= self.level:
+                char_category = possible_category
+                self.old_level = self.level
+                self.level = self.get_clevel(possible_category) + 1
+                break
+                
         print("\tcategory: " + char_category)
+        # find all transitions with valid start state 
         valid_starting = []
         for t in transitions:
             if t.name == self.current_state:
                 valid_starting.append(t)
-        if len(valid_starting) == 0:
-            self.step(char, True)
+        
+        has_possible_transition = False
+        for x in valid_starting:
+            if x.condition == char_category or x.condition == "*":
+                has_possible_transition = True
+
+        if not has_possible_transition:
+            print("forcing rerun")
+            if force > 3:
+                print("forcing level reset")
+                self.level = 1
+                self.step(char)
+            else:
+                print("incrementing level")
+                self.level = self.level + 1
+                self.step(char, force = force + 1)
+
         for t in valid_starting:
-            if len(self.accumulator) != 0:
-                if self.accumulator[-1] == ' ':
-                    for possible_category in category_fallbacks:
-                        if possible_category[-1] == '1':
-                            print("CATEGORY:" + possible_category)
-                            char_category = possible_category
             if t.condition == "*":
                 print("\t\tepsilon transition: {} -> {}, restepping".format(t.name, t.to))
                 self.current_state = t.to 
                 if (t.name == "q9"):
-                    print("\t\t\tq9: re-stepping with space")
+                    print("\t\t\tq9: re-stepping with space after.")
                     self.accumulator = self.accumulator + " "
+                    self.level = 1
                     self.step(char)
                 else:
+                    #if char_category in ["c1", "c2", "c3", "v1", "v2", "v3"]:
+                    #    self.level = self.old_level
                     self.step(char)
                     # self.step(char)
             elif t.condition == char_category:
                 self.transition(char, t)
+        
     def transition(self, char, t):
         print("\taccumulator: {} \n\t\ttransition: {} -> {} ({} : {})".format(self.accumulator, t.name, t.to, char, t.condition))
         if t.space:
-            print("\t\tadding space after.")
+            print("\t\tadding space before.")
             self.accumulator = self.accumulator + " "
+            self.level = 1
         self.accumulator = self.accumulator + char
+        print("\taccumulator: {} \n\t\ttransition: {} -> {} ({} : {})".format(self.accumulator, t.name, t.to, char, t.condition))
         self.current_state = t.to
     def reset(self):
         self.current_state = "q0"
