@@ -19,105 +19,62 @@ class T:
         self.space = s
 
 class StateMachine:
-    def __init__(self, c, cs, a, t):
+    def __init__(self, c, cs, a, t, p):
         self.categories = c
         self.current_state = cs
         self.accumulator = a
         self.transitions = t
-        self.level = 1
+        self.precedence = p
+
     def run(self, text):
         for char in text:
             if char != '\n':
-                print("character: {} {}".format(char, ord(char)))
                 self.step(char)
         return self.accumulator
-    def get_clevel(self, category):
-        if category == "t":
-            return 1
-        if category[-1] in ["1", "2", "3"]:
-            return int(category[-1])
-        else:
-            return -1
-    def step(self, char, force = 0):
+
+    def step(self, char):
         char_category = ""
-        possible_categories = []
-        # find possible categories
-        for k, v in self.categories.items():
-            if char in v:
-                print('possible category: {}'.format(k))
-                char_category = k
-                possible_categories.append(k)
-        # decide based on other seen in word
-        for possible_category in possible_categories:
-            if self.get_clevel(possible_category) >= self.level:
-                char_category = possible_category
-                self.old_level = self.level
-                self.level = self.get_clevel(possible_category) + 1
-                break
-                
-        print("\tcategory: " + char_category)
-        # find all transitions with valid start state 
-        valid_starting = []
-        for t in transitions:
-            if t.name == self.current_state:
-                valid_starting.append(t)
-        
-        has_possible_transition = False
-        for x in valid_starting:
-            if x.condition == char_category or x.condition == "*":
-                has_possible_transition = True
+        possible_categories = self.precedence.get(self.current_state)
 
-        if not has_possible_transition:
-            print("forcing rerun")
-            if force > 3:
-                print("forcing level reset")
-                self.level = 1
-                self.step(char)
-            else:
-                print("incrementing level")
-                self.level = self.level + 1
-                self.step(char, force = force + 1)
+        epsilon = True
+        if possible_categories is not None:
+            for category in possible_categories:
+                if char in self.categories[category]:
+                    char_category = category
+                    epsilon = False
+                    break
 
-        for t in valid_starting:
-            if t.condition == "*":
-                print("\t\tepsilon transition: {} -> {}, restepping".format(t.name, t.to))
-                self.current_state = t.to 
-                if (t.name == "q9"):
-                    print("\t\t\tq9: re-stepping with space after.")
-                    self.accumulator = self.accumulator + " "
-                    self.level = 1
+        for transition in self.transitions:
+            if transition.name == self.current_state:
+                if transition.condition == "*" and epsilon == True:
+                    self.current_state = transition.to
+                    if transition.name == "q9":
+                        self.accumulator = self.accumulator + " "
                     self.step(char)
-                else:
-                    #if char_category in ["c1", "c2", "c3", "v1", "v2", "v3"]:
-                    #    self.level = self.old_level
-                    self.step(char)
-                    # self.step(char)
-            elif t.condition == char_category:
-                self.transition(char, t)
-        
+                    break
+                elif transition.condition == char_category:
+                    self.transition(char, transition)
+                    break
+
     def transition(self, char, t):
-        print("\taccumulator: {} \n\t\ttransition: {} -> {} ({} : {})".format(self.accumulator, t.name, t.to, char, t.condition))
         if t.space:
-            print("\t\tadding space before.")
             self.accumulator = self.accumulator + " "
-            self.level = 1
         self.accumulator = self.accumulator + char
-        print("\taccumulator: {} \n\t\ttransition: {} -> {} ({} : {})".format(self.accumulator, t.name, t.to, char, t.condition))
         self.current_state = t.to
     def reset(self):
         self.current_state = "q0"
         self.accumulator = ""
 
-
 categories = {
-        "v1":v1
-    ,   "c1":c1
-    ,   "c2":c2
-    ,   "v2":v2
-    ,   "t":t
-    ,   "v3":v3
-    ,   "c3":c3
+        "v1" : v1
+    ,   "c1" : c1
+    ,   "c2" : c2
+    ,   "v2" : v2
+    ,   "t"  : t
+    ,   "v3" : v3
+    ,   "c3" : c3
     }
+
 transitions = [   
         # FROM  COND   TO   SPACE
         T("q0", "v1", "q1")
@@ -151,7 +108,17 @@ transitions = [
     ,   T("q9", "*",  "q0", True)
     ]
 
-sm = StateMachine(categories, "q0", "", transitions)
+precedence = {
+        "q0" : ["v1", "c1"],
+        "q1" : ["c1"],
+        "q2" : ["c2", "v2", "t" , "v3", "c3", "v1", "c1"],
+        "q3" : ["v2", "t" , "v3", "c3"],
+        "q4" : ["t" , "v3", "c3", "v1", "c1"],
+        "q5" : ["v3", "c3", "v1", "c1"],
+        "q6" : ["c3", "v1", "c1"]
+    }
+
+sm = StateMachine(categories, "q0", "", transitions, precedence)
 
 def tokenize(line):
         sm.reset()
